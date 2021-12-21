@@ -1,0 +1,178 @@
+{% load cart_tag %}
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href='https://fonts.googleapis.com/css?family=Saira Stencil One' rel='stylesheet'>
+
+<!--<link href="carousel.css" rel="stylesheet">-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+
+ <link rel="stylesheet" href="/static/css/home.css">
+
+
+<style>
+  body {
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom:5px;
+}
+#li1{
+	 font-family: 'Saira Stencil One'; font-style: normal;
+	 font-size: 18px;
+   padding-left: 5px;
+	
+}
+#li1 a{
+	color:#00838f;
+
+}
+
+#li1 a:hover {
+  background-color: #b3e5fc;
+  border-radius: 30%
+}
+#li2 a{
+  color:#00838f;
+   font-family: 'Saira Stencil One'; font-style: normal;
+}
+
+#li2 a:hover {
+  background-color: #b3e5fc;
+  border-radius: 30%
+}
+
+#button1 {
+  background-color:#e1f5fe; 
+  border: none;
+  color: white;
+  padding: 2px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border:1px solid #81d4fa ;
+  border-radius: 30%;
+}
+
+
+  </style>
+  </head>   
+<body>
+<div  style="background-color:#80cbc4 ">
+      <nav class="navbar navbar-expand-lg navbar-light  rounded" style="background-color:#b2dfdb ;">
+      	<img src="/static/images/petsociety.png" width="20%">
+
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample09">
+          <ul class="navbar-nav mr-auto">
+            <li id="li1"class="nav-item active">
+              <button id="button1"><a class="nav-link" href="{% url 'App_Shop:home' %}">Home <span class="sr-only">(current)</span></a></button>
+            </li>
+            <li id="li1" class="nav-item">
+              <button id="button1"><a class="nav-link" href="#">Vet Care</a></button>
+            </li>
+            <li id="li1" class="nav-item">
+              <button id="button1"><a class="nav-link" href="#"><i class="fa fa-phone" aria-hidden="true"></i> Contact</a></button>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+            <li id="li1" class="nav-item dropdown" style="color:white;font-size:16px;">
+        <a class="nav-link dropdown-toggle" style="font-color:#0097a7"href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-user-tie"></i>
+           {{request.user.profile.username}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'App_Login:profile' %}">My Profile</a>
+          <a class="dropdown-item" href="{% url 'App_Payment:order' %}">Order</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'App_Login:logout' %}">Logout</a>
+        </div>
+      </li>
+            <li id="li1" class="nav-item" >
+              <a class="nav-link " href="{% url 'App_Order:cart' %}" style="font-size: 16px;color:#00838f  ;"style="color:white" ><i class="fas fa-shopping-cart"></i> Cart
+              <span class="badge" style="background:#ef5350;color:white;font-size:10px;border-radius: 50%;font-family: 'arial'"> {{request.user|cart_total}}</span></a>
+            </li>
+            {% else %}
+            <li id="li1" class="nav-item">
+              <button id="button1"><a class="nav-link" href="{% url 'App_Login:login' %}"><i class="fas fa-user" aria-hidden="true"></i> Login</a></button>
+            </li>
+            <li id="li1" class="nav-item">
+              <button id="button1"><a class="nav-link" href="{% url 'App_Login:signup' %}">
+              <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Register</a></button>
+            </li>
+            {% endif %}
+          </ul>
+          
+        </div>
+      </nav>
+
+      <nav class="navbar navbar-expand-lg navbar-light  rounded" style="background-color:#e0f2f1 ; ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+          <ul class="navbar-nav">
+            <li id="li2" class="nav-item active">
+              <a class="nav-link" href="#">Health Supplies<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li id="li2"class="nav-item dropdown" >
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-cat'></i>Cat</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown10">
+                <a class="dropdown-item" href="">Cats</a>
+                <a class="dropdown-item" href="#">Cat Food</a>
+              </div>
+            </li>
+            <li id="li2"class="nav-item dropdown" >
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-dog'></i>Dog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown10">
+                <a class="dropdown-item" href="">Dogs</a>
+                <a class="dropdown-item" href="#">Dog Food</a>
+              </div>
+            </li>
+
+            <li id="li2"class="nav-item dropdown" >
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-fish'></i>Fish</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown10">
+                <a class="dropdown-item" href="">Fish</a>
+                <a class="dropdown-item" href="#">Fish Food</a>
+              </div>
+            </li>
+            <li id="li2"class="nav-item dropdown" >
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-crow'></i>Bird</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown10">
+                <a class="dropdown-item" href="">Birds</a>
+                <a class="dropdown-item" href="#">Bird Food</a>
+              </div>
+            </li>
+            <li id="li2"class="nav-item dropdown" >
+             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='fas fa-horse'></i>Small Harbivores</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown10">
+                <a class="dropdown-item" href="">Small Animals</a>
+                <a class="dropdown-item" href="#">Food</a>
+              </div>
+            </li>
+            
+            </li>
+            <li id="li2" class="nav-item">
+              <a class="nav-link" href="{% url 'App_Shop:item' %}">Accessories</a>
+              
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+</div>
+</body>
+</html>

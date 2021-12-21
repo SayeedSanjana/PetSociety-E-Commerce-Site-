@@ -1,0 +1,81 @@
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body_block %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block body_title %}Order List{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <link href='https://fonts.googleapis.com/css?family=Saira Stencil One' rel='stylesheet'>
+  <style>
+h2
+    { font-family:  'Saira Stencil One'; font-size: 30px; font-style: normal;
+    border:2px solid #b39ddb;
+    border-radius: 20%;
+    color: #3F729B;
+   
+
+      
+  }
+  p{
+ font-family: 'Saira Stencil One'; font-size: 12px; font-style: normal;
+ color: #3F729B
+ 
+}  
+#order{
+   font-family:  'Saira Stencil One';
+}
+.btn{
+   font-family:  'Saira Stencil One';
+   border:4px solid #3F729B;
+}
+</style>
+</head>
+
+<body>
+ 
+<div class="container mt-5">
+  <div>
+    <img src="">
+ <h2 style="background: url('/static/images/title.png');background-position:cover;text-align: center;border:2px solid #3F729B" >Your Order</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mt-5" style="height:auto">
+        <div class="table-responsive">
+          <table class="table table-success table-striped" style="border:2px solid #00acc1">
+            <thead>
+              <tr>
+                <th scope="col" id="order"><img src="/static/images/order.webp" width="20%"></th>
+                <td scope="col" id="order">Order Id</td>
+                <td scope="col" id="order">Products</td>
+                <td scope="col" id="order">Status</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td><a href="" style="color:#59698d">{{order.orderId}}</a></td>
+                <td>
+                  {% for items in order.orderitems.all %} {{items}} <br> {% endfor %}
+                </td>
+                <td><span class="badge badge-info">Processing Your Order</span></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-center my-5">
+      <a class="btn btn-info btn-md"href="{% url 'App_Shop:home' %}" >Back To Home</a>
+    </div>
+  </div>
+</div>
+</body>
+{% endblock %}
+</html>

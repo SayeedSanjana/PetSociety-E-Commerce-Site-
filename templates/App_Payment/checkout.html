@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block body_block %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block body_title %}Change Profile{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <link href='https://fonts.googleapis.com/css?family=Saira Stencil One' rel='stylesheet'>
+  <style>
+h2
+    { font-family:  'Saira Stencil One'; font-size: 30px; font-style: normal;
+    border:2px solid #b39ddb;
+    border-radius: 20%;
+    color: #3F729B;
+   
+
+      
+  }
+  p{
+ font-family: 'Saira Stencil One'; font-size: 12px; font-style: normal;
+ color: #3F729B
+ 
+}  
+</style>
+</head>
+
+<body>
+ 
+<div class="container mt-5">
+  <div class="jumbotron" style="background-color: #e3f2fd">
+   <img  src="/static/images/shippinglist.gif" width="100%" height="350 px " style="border: 3px solid #00838f ">
+  <hr class="my-4">
+  <div style=" background-color:#e8eaf6">
+  <h2 class="mb-5 p-4"> Shipping Address <span class="text-muted" style="font-size:20px">|Checkout|</span></h2>
+</div>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg"  role="button" style="color:white">Correctly fill the form and Check shipping items!!</a>
+  </p>
+</div>
+<div class="row p-5" style="border: 3px solid #b2ebf2 ">
+  <div class="col md-9">
+    <div class="card mb-5" style="height:auto">
+      <div class="card-body">
+<form method="POST">
+	{{form|crispy}}
+	{% csrf_token %}
+<button type="submit" class="btn btn-info btn-md float-right">Save Address</button>
+</form>
+<br>
+</div>
+</div>
+  </div>
+  <div class="col-md-3">
+     <div class="card mb-5" style="height:auto">
+      <div class="card-body">
+        
+        <ul class="list-group list-group-flush">
+          {% for order_item in order_items %}
+          <li>{{order_item.item.name}} x <b>{{order_item.quantity}}</b></li>
+          {% endfor %}
+        </ul>
+
+
+      </div>
+
+     
+     <div class="card-footer">
+      <span class="float-left"><b>Order Total</b></span>
+       <span class="float-right"><b> &#2547;{{order_total|floatformat:2}}</b></span>
+    </div>
+   </div>
+   <div>
+    {% if saved_address.is_fully_filled %}
+      <a class="btn btn-warning btn-md" href="{% url 'App_Payment:payment' %}" style="color:white">Make Payment</a>
+
+    {% else %}
+       <div class="alert alert-info"><p>Please fillup all the boxes to make payment!</p></div>
+       
+    {% endif %}
+   </div>
+            
+  </div>
+</div>
+</div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href='https://fonts.googleapis.com/css?family=Saira Stencil One' rel='stylesheet'>
+
+<link href="carousel.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+
+ <link rel="stylesheet" href="static/css/home.css">
+
+
+<style>
+</style>
+</head>
+<body>
+<div class="row">
+	{{product}}
+        {% if product == "Accessories" %}
+
+      	    {% for acc in accessories %}
+
+		         <div class="col-md-6 col-sm-12 col-lg-3">
+		         	<figure id="card1"class="card card-product">
+		         		<div class="img-wrap">
+		         			<img src="/media/{{acc.mainimage}} " style=" width:100% ;height:300px">
+		                    </div>
+		                    <figcaption class="info-wrap">
+		                    	<h6 class="title"><a href="{% url 'App_Shop:product-detail' pk=acc.pk %}"><b>{{acc.name}}</b></a></h6>
+		                    	<div class="action-wrap">
+		                    		<div class="price-wrap h5">
+		                    			<span class="price-new">&#2547; {{acc.price|floatformat:2}}</span>
+		                    			<span class="price-old"><strike>&#2547; {{acc.old_price|floatformat:2}}</strike></span>
+		                    		</div>
+		                    	</div>
+		                    </figcaption>
+		         	</figure>
+		         </div>
+            {% endfor %}
+
+        {% endif %}
+     </div>
+ </body>
+ </html>
+{% endblock %}
